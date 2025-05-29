@@ -12,16 +12,13 @@ var rootCmd = &cobra.Command{
 	Short: "Run commands using a yaml file for flags and arguments.",
 	Long: `Run your commands with less flags and arguments. Configure a yaml file 
 	that looks very much like the actual command you meat to run. For example, the file below 
-	will run the following command: "find /var/log -type -f -name "*.log" -mtime 3"
+	will run the following command: "find /var/log "*.log" -mtime -3"
 	
 	find:
 		- "/var/log"
-		- "-type"
-		- "-f"
-		- "-name"
 		- "*.log"
-		- "-mtime 3"
-	
+		- "-mtime"
+		- "-3"
 	`,
 	Run: func(cmd *cobra.Command, args []string) {
 		command, err := Read(args[0])
