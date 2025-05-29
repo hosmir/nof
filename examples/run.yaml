@@ -1,0 +1,4 @@
+go:
+  - "run"
+  - "main.go"
+  - "example/find.yaml"
