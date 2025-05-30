@@ -27,6 +27,10 @@ var runCmd = &cobra.Command{
 			fmt.Println(err)
 			os.Exit(1)
 		}
+		if command.Name == "" && err == nil {
+			fmt.Printf("error: the path \"%s\" does not exist\n", args[0])
+			os.Exit(1)
+		}
 		commandexec := internal.CommandToExec(command)
 		internal.Run(*commandexec)
 	},
