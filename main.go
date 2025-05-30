@@ -1,11 +1,7 @@
-/*
-Copyright © 2025 Hossein Mirjalali mirjalali.hosein@gmail.com
-
-*/
 package main
 
-import "nof/internal"
+import "nof/cmd"
 
 func main() {
-	internal.Execute()
+	cmd.Execute()
 }

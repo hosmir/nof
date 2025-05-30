@@ -13,7 +13,7 @@ var rootCmd = &cobra.Command{
 	Long: `Run your commands with less flags and arguments. Configure a yaml file 
 	that looks very much like the actual command you meat to run. For example, the file below 
 	will run the following command: "find /var/log "*.log" -mtime -3"
-	
+
 	find:
 		- "/var/log"
 		- "*.log"
