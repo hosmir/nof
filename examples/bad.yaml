@@ -1,0 +1,7 @@
+# Example of an invalid yaml file
+find:
+  "bad"
+  - "/var/log"
+  - "\"*.log\""
+  - "-mtime"
+  - "-3"
