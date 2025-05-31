@@ -138,5 +138,5 @@ fabric.properties
 .idea/**/azureSettings.xml
 
 nof
-./bin/*
+/bin/nof
 # End of https://www.toptal.com/developers/gitignore/api/go,goland

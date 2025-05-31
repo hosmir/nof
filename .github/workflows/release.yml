@@ -1,0 +1,33 @@
+name: Build and Upload Release
+
+on:
+  release:
+    types: [created]
+
+jobs:
+  build-and-release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.24.3'
+
+      - name: Build binary
+        run: |
+          mkdir -p bin
+          go build -o ./bin/ -v ./...
+
+      - name: Write version to version.txt
+        run: echo "${{ github.event.release.tag_name }}" > bin/version.txt
+
+      - name: Upload release asset
+        uses: softprops/action-gh-release@v2
+        with:
+          files: bin/nof
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
