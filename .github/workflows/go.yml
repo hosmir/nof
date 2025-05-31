@@ -27,12 +27,3 @@ jobs:
     - name: Test
       run: go test -v ./...
 
-    - name: Version
-      run: echo ${{ github.ref_name }} > bin/version.txt
-      if: github.ref_type == 'tag'
-
-    - name: Release
-      uses: softprops/action-gh-release@v2
-      if: github.ref_type == 'tag'
-      with:
-        files: ./bin/nof
