@@ -1,5 +1,5 @@
 find:
   - "/var/log"
-  - "\"*.log\""
+  - "*.log"
   - "-mtime"
   - "-3"
