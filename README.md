@@ -22,7 +22,7 @@ Use the following YAML file:
 ```yaml
 # find.yaml
 find:
-  - "/var/log"
+  - "$NOF_EXAMPLE_DIR"
   - "*.log"
   - "-mtime"
   - "-3"
@@ -31,7 +31,7 @@ find:
 Then run:
 
 ```
-nof ./examples/find.yaml
+export NOF_EXAMPLE_DIR=/var/log && ./nof run ./examples/find.yaml
 ```
 
 ## Installation

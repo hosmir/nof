@@ -1,6 +1,7 @@
 package internal
 
 import (
+	"os"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -37,6 +38,19 @@ ls:
 			},
 		},
 		{
+			name: "valid command with environment variable in the args",
+			yamlStr: `
+find:
+  - "/var/log"
+  - "*.log"
+  - "-mtime"
+  - "$TEST_ENV_KEY"`,
+			expected: Command{
+				Name: "find",
+				Args: []string{"/var/log", "*.log", "-mtime", "TEST_ENV_VALUE"},
+			},
+		},
+		{
 			name: "empty command args",
 			yamlStr: `
 pwd: []`,
@@ -47,6 +61,8 @@ pwd: []`,
 		},
 	}
 
+	// set a value for the environment variable test case
+	os.Setenv("TEST_ENV_KEY", "TEST_ENV_VALUE")
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
 			var cmd Command
@@ -57,9 +73,26 @@ pwd: []`,
 			assert.Equal(t, tt.expected.Args, cmd.Args)
 		})
 	}
+
+	yamlStrWhiteSpace := `
+find:
+  - "/var/log"
+  - "*.log "
+  - "-mtime"
+  - "$TEST_ENV_KEY"
+`
+
+	t.Run("arg contains whitespace", func(t *testing.T) {
+		var cmd Command
+		err := yaml.Unmarshal([]byte(yamlStrWhiteSpace), &cmd)
+
+		assert.Error(t, err)
+	})
+
 }
 
 func TestCommandMarshalYAML(t *testing.T) {
+	os.Setenv("TEST_ENV_KEY", "TEST_ENV_VALUE")
 	tests := []struct {
 		name     string
 		command  Command

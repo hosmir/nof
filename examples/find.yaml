@@ -1,5 +1,5 @@
 find:
-  - "/var/log"
+  - "$NOF_EXAMPLE_DIR"
   - "*.log"
   - "-mtime"
   - "-3"
