@@ -53,12 +53,6 @@ OR
 
 Just download the binary from the [releases](/releases) page and add it to your PATH. (The binary is built on for linux amd64)
 
-## Usage
-
-```
-nof /path/to/command.yaml
-```
-
 ## License
 
 GNU GPL-3.0
